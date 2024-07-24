@@ -1,0 +1,34 @@
+{% extends 'base.html'  %}
+
+{% block title %}Netflicks - Recently Viewed{% endblock %}
+
+{% block content %}
+
+<h1>Your Recently Viewed Titles</h1>
+
+<div class="gallery-wrapper">
+    <button class="scroll-btn left-btn" id="leftBtn-latest">◀</button>
+    <div class="gallery" id="gallery-latest">
+        {% for movie in movies %}
+        {% if movie.images %}
+        <div class="image-wrapper">
+            <div class="image-container">
+                <a href="/movie-details-{{ movie.imdbid }}" target="_self">
+                    <img src="{{ movie.images[0].image_url }}" alt="{{ movie.title }}" loading="lazy" class="movie-image">
+                    <div class="description">
+                        <h1>{{movie.title}}</h1>
+                        <p>{{movie.synopsis}}</p>
+                        <p>Released: {{movie.released}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <button class="scroll-btn right-btn" id="rightBtn-latest">▶</button>
+</div>
+
+<a href="/users/recently-viewed/empty" target="_self">Empty Your Recently Viewed</a>
+
+{% endblock %}

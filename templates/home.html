@@ -1,0 +1,41 @@
+{% extends 'base.html'  %}
+
+{% block title %}Netflicks{% endblock %}
+
+{% block content %}
+
+
+{% for title, movies in movie_data.items() %}
+
+<h1>{{ title }}</h1>
+<div class="gallery-wrapper">
+    <button class="scroll-btn left-btn" id="leftBtn-latest">◀</button>
+    <div class="gallery" id="gallery-latest">
+        {% for movie in movies %}
+        {% if movie.images %}
+        <div class="image-wrapper">
+            <div class="image-container">
+                <a href="/movie-details-{{ movie.imdbid }}" target="_self" onclick="showLoadingScreen()">
+                    <img src="{{ movie.images[0].image_url }}" alt="{{ movie.title }}" loading="lazy" class="movie-image">
+                    <div class="description">
+                        <h1>{{movie.title}}</h1>
+                        <p>{{movie.synopsis}}</p>
+                        <p>Released: {{movie.released}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <button class="scroll-btn right-btn" id="rightBtn-latest">▶</button>
+</div>
+{% endfor %}
+
+<div id="loading">
+    <h1>Loading... Get your popcorn ready!</h1>
+    <img src="https://www.icegif.com/wp-content/uploads/2023/09/icegif-581.gif">
+</div>
+<div id="result"></div>
+
+{% endblock %}

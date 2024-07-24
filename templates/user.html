@@ -1,0 +1,21 @@
+{% extends 'base.html'  %}
+
+{% block title %}Netflicks - User Page{% endblock %}
+
+{% block content %}
+
+<h1>{{user_info.first_name}} {{user_info.last_name}}</h1>
+<p> Username: {{user_info.username}} | Email: {{user_info.email}}</p>
+
+
+<form action="/users/{{user_info.username}}/delete" method="post" style="float: left; padding-right: 40px;">
+    <input type="hidden" name="username" value="{{ user_info.username }}">
+    <button type="submit" class="btn btn-danger">Delete User</button>
+</form>
+
+<form action="/users/{{user_info.username}}/feedback/add" method="get">
+    <input type="hidden" name="username" value="{{ user_info.username }}">
+</form>
+
+
+{% endblock %}

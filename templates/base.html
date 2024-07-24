@@ -1,0 +1,78 @@
+<html>
+
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/stylesheets/style.css">
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="menu">
+        
+        <!-- Left side items -->
+        <div class="menu-item">
+          <a href="/search" id="search-toggle">Search</a>
+        </div>
+        <!-- Search text box container -->
+        <div class="search-container" id="search-bar">
+          <form action="/api/search" method="POST">
+              <input type="text" name="search" placeholder="Search...">
+              <button class="btn btn-success" type="submit" onclick="showLoadingScreen()">Search</button>
+              <button type="button" class="close-button" id="close-search">X</button>
+          </form>
+        </div>
+        <!-- drop down menu for genres -->
+        <div class="menu-item dropdown">
+            <a href="#" class="dropdown-toggle">Genres</a>
+            <div class="dropdown-content">
+              {% set options = ['New Arrivals', 'Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Drama', 'Family', 'Fantasy', 'Horror', 'Mystery', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War'] %}
+              {% for option in options %}
+                <a href="/api/genre/{{option}}/1" target="_self" onclick="showLoadingScreen()">{{option}}</a>
+              {% endfor %}
+            </div>
+        </div>
+      
+        <!-- Centered image -->
+        <div class="navbar-logo">
+          <a href="/" onclick="showLoadingScreen()">
+            <img src="/static/images/netflicks_logo.png">
+          </a>
+        </div>
+        
+        <!-- Right side items -->
+        <div class="navbar-items ml-auto">
+          {% if session['username'] %}
+          <div class="menu-item dropdown">
+            <a href="/user/account" class="dropdown-toggle">My Account</a>
+            <div class="dropdown-content">
+                <a href="/users/watchlist">Watchlist</a>
+                <a href="/users/recently-viewed">Recently Viewed</a>
+                <a href="/user/account">Account Details</a>
+                <a href="/logout">Logout</a>
+            </div>
+          </div>
+          {% else %}
+          <div class="menu-item">
+            <a href="/login">Login</a>
+          </div>
+          {% endif %}
+        </div>
+
+      </div>
+    </nav>
+
+    <div class="container">
+      {% for category, msg in get_flashed_messages(with_categories=True) %}
+      <div class="flash">{{ msg }}</div>
+      {% endfor %}
+
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <script src="/static/js/script.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,142 @@
+{% extends 'base.html'  %}
+
+{% block title %}Netflicks - {{ movie.title }}{% endblock %}
+
+{% block content %}
+
+<div class="details-container">
+
+    <div class="left-col">
+
+        {% if movie.title %}
+        <h1>{{ movie.title }}</h1>
+        {% endif %}
+
+        {% if movie.images and movie.images[0] and movie.images[0].image_url %}
+        <img src="{{movie.images[0].image_url}}" alt="Description of the image" class="detail-poster">
+        {% endif %}
+
+    </div>
+
+    <div class="right-col">
+
+        <a href="/users/watchlist/{{ movie.imdbid }}" class="wishlist">Add to Watchlist</a>
+
+        <div>
+            <p class="detail-lgr">DETAILS</p>
+        </div>
+
+        {% if movie.released %}
+        <div class="flex-container">
+            <p class="detail-lg">Released Year: </p>
+            <p class="detail-sm">{{ movie.released }}</p>
+        </div>
+        {% endif %}
+
+        {% if movie.runtime %}
+        <div class="flex-container">
+            <p class="detail-lg">Runtime: </p>
+            <p class="detail-sm">{{ movie.runtime }}</p>
+        </div>
+        {% endif %}
+
+        {% if movie.genres %}
+        <div class="flex-container">
+            <p class="detail-lg">Genres: </p>
+            {% for genre in movie.genres %}
+            <p class="detail-sm">{{ genre.genre_name }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if movie.streaming_availability %}
+        <div class="flex-container">
+            <p class="detail-lg">Streaming Availibility: </p>
+            {% for stream in movie.streaming_availability %}
+            <a class="detail-sm" href="{{ stream.link }}" target=”_blank”>{{ stream.platform }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if movie.trailers %}
+        <div class="flex-container">
+            <p class="detail-lg">Trailers: </p>
+            {% for trailer in movie.trailers %}
+            <a class="detail-sm" href="{{ trailer.trailer_url }}">Trailer</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if movie.language %}
+        <div class="flex-container">
+            <p class="detail-lg">Languages: </p>
+            <p class="detail-sm">{{ movie.language }}</p>
+        </div>
+        {% endif %}
+
+        {% if movie.imdbrating %}
+        <div class="flex-container">
+            <p class="detail-lg">IMDB Rating: </p>
+            <p class="detail-sm">{{ movie.imdbrating }}</p>
+        </div>
+        {% endif %}
+
+        {% if movie.numvotes %}
+        <div class="flex-container">
+            <p class="detail-lg">IMDB Votes: </p>
+            <p class="detail-sm">{{ movie.numvotes }}</p>
+        </div>
+        {% endif %}
+
+        {% if movie.type %}
+        <div class="flex-container">
+            <p class="detail-lg">Film Type: </p>
+            <p class="detail-sm">{{ movie.type }}</p>
+        </div>
+        {% endif %}
+
+        {% if movie.synopsis %}
+        <div>
+            <p class="detail-lgr">SYNOPSIS</p>
+            <p class="detail-bk">{{ movie.synopsis }}</p>
+        </div>
+        {% endif %}
+
+        {% if movie.quotes %}
+        <div class="expandable-content">
+            <p class="detail-lgr">POPULAR QUOTES</p>
+            <div class="expandable-text" id="expandable-text">
+                {% for quote in movie.quotes %}
+                <p class="detail-bk">{{ quote.quote }}</p>
+                {% endfor %}
+            </div>
+            <a href="#" id="toggle" class="read-more">Read More</a>
+        </div>
+        {% endif %}
+
+        {% if movie.reviews %}
+        <div class="expandable-content">
+            <p class="detail-lgr">NOTABLE REVIEWS</p>
+            <div class="expandable-text" id="expandable-text">
+                {% for review in movie.reviews %}
+                <p class="detail-bk">{{ review.review }}</p>
+                {% endfor %}
+            </div>
+            <a href="#" id="toggle" class="read-more">Read More</a>
+        </div>
+        {% endif %}
+
+        {% if movie.summary and movie.summary[0] and movie.summary[0].summary %}
+        <div class="expandable-content">
+            <p class="detail-lgr">SUMMARY</p>
+            <div class="expandable-text" id="expandable-text">
+                <p class="detail-bk">{{ movie.summary[0].summary }}</p>
+            </div>
+            <a href="#" id="toggle" class="read-more">Read More</a>
+        </div>
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

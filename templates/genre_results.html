@@ -1,0 +1,43 @@
+{% extends 'base.html'  %}
+
+{% block title %}Netflicks - {{ genre }}{% endblock %}
+
+{% block content %}
+
+<h1>Genre: {{ genre }} | Page: {{ page }}</h1>
+
+<div class="gallery-wrapper">
+    <button class="scroll-btn left-btn" id="leftBtn-latest">◀</button>
+    <div class="gallery" id="gallery-latest">
+        {% for movie in movies %}
+        {% if movie.images %}
+        <div class="image-wrapper">
+            <div class="image-container">
+                <a href="/movie-details-{{ movie.imdbid }}" target="_self">
+                    <img src="{{ movie.images[0].image_url }}" alt="{{ movie.title }}" loading="lazy" class="movie-image">
+                    <div class="description">
+                        <h1>{{movie.title}}</h1>
+                        <p>{{movie.synopsis}}</p>
+                        <p>Released: {{movie.released}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <button class="scroll-btn right-btn" id="rightBtn-latest">▶</button>
+</div>
+
+<div class="pageSelection">
+    <p>Page</p>
+    {% for i in range(1,11) %}
+        {% if i == page|int %}
+            <a class="pageSelected" href="#">{{ i }}</a>
+        {% else %}
+            <a class="page" href="/api/genre/{{ genre }}/{{ i }}" target="_self" onclick="showLoadingScreen()">{{ i }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}
