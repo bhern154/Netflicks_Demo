@@ -1,11 +1,12 @@
 ## How To Run NETFLICKS Locally
 
+
 **Using `psql`:** Command to create a new database.
 - **`psql`**
     - **`CREATE DATABASE netflicks_db;`**: Create the PostgreSQL database.
 
   
-**MacOS Terminal:**
+**MacOS Terminal / Linux:**
   - **`git clone <url>`:** Clone the repository.
   - **`cd <repo folder>`:** Change directory to the cloned repo.
   - **`code credentials.py`:** Open the `credentials.py` file in VS Code.
