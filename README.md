@@ -23,7 +23,7 @@
   - **`FLASK_ENV=development FLASK_DEBUG=1 flask run`:** Run the Flask application in development mode with debugging enabled.
 
     
-**Windows Command Prompt / PowerShell:**
+**Windows Command Prompt:**
   - **`git clone <url>`:** Clone the repository.
   - **`cd <repo folder>`:** Change directory to the cloned repo.
   - **`notepad credentials.py`:** Open the `credentials.py` file in Notepad.
@@ -41,7 +41,3 @@
   - **`set FLASK_DEBUG=1`:** Enable debugging.
   - **`flask run`:** Run the Flask application.
   
-  For PowerShell, the activation command is slightly different:
-  
-  ```powershell
-  .\venv\Scripts\Activate
