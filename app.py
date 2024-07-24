@@ -8,7 +8,7 @@ import time
 from credentials import SecretKey, APIKey
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///movies_db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///netflicks_db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
 app.config["SECRET_KEY"] = SecretKey
