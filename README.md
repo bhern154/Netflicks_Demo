@@ -1,10 +1,10 @@
 ![NETFLICKS](/ReadMeImages/netflicks_logo.png)
 
-NETFLICKS is a project inspired by Netflix.
+NETFLICKS is a project inspired by Netflix and uses the [OTT Details API](https://rapidapi.com/gox-ai-gox-ai-default/api/ott-details).
 
 The goal of this project is to develop a Python full-stack web application. The stack includes Flask for the server-side framework, PostgreSQL as the database, SQLAlchemy for ORM (Object Relational Mapping), Jinja for templating in HTML, WTForms for user forms, and Bcrypt for securing user authentication with encryption.
 
-All the movie data is sourced from the OTT Details API, and the relevant information is stored in the local database. The OTT Details API is used for various functionalities, including fetching movies by genre, retrieving movies based on user searches, and obtaining additional details when a movie is clicked on.
+All the movie data is sourced from the [OTT Details API](https://rapidapi.com/gox-ai-gox-ai-default/api/ott-details), and the relevant information is stored in the local database. The OTT Details API is used for various functionalities, including fetching movies by genre, retrieving movies based on user searches, and obtaining additional details when a movie is clicked on.
 
 On top of exploring movies, NETFLICKS will give you options to watch the movie of your choice under the “Streaming Availability” options available. You can also watch trailers under the “Trailers” options available.
 
