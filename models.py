@@ -14,14 +14,28 @@ def connect_db(app):
 
     with app.app_context():
         try:
-            # Explicitly declare the textual SQL expression
-            result = db.session.execute(text("SELECT 1 FROM information_schema.tables LIMIT 1;"))
-            result.fetchone()
-            print("Database already contains tables.")
-        except OperationalError:
-            # If the database is empty or does not exist, create all tables
-            print("Database is empty or does not exist. Creating tables...")
-            db.create_all()
+            # Query to check if the 'movies' table exists
+            result = db.session.execute(text(
+                """
+                SELECT EXISTS (
+                    SELECT 1
+                    FROM information_schema.tables 
+                    WHERE table_schema = 'public' 
+                    AND table_name = 'movies'
+                );
+                """
+            ))
+            table_exists = result.scalar()
+
+            if table_exists:
+                print("Table 'movies' already exists.")
+            else:
+                # If the 'movies' table does not exist, create all tables
+                print("Table 'movies' does not exist. Creating tables...")
+                db.create_all()
+        except OperationalError as e:
+            # Handle operational errors
+            print(f"OperationalError: {e}")
 
 # User Model
 class User(db.Model):
