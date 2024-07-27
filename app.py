@@ -39,8 +39,8 @@ def home():
     latest_movies = (db.session.query(Movies)
           .join(MovieImages, Movies.imdbid == MovieImages.imdbid)
           .filter(Movies.type == 'movie')
-          .order_by(Movies.numvotes.asc())
           .order_by(Movies.released.desc())
+          .order_by(Movies.numvotes.asc())
           .limit(100)
           .all())
 
