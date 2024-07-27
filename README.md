@@ -29,8 +29,6 @@ Key components include:
 ### Navigation
 
 ![Navigation Bar](/ReadMeImages/Nav_Bar.png)
-![Account Tab](/ReadMeImages/Account_Tab.png)
-![Genres Tab](/ReadMeImages/Genres_Tab.png)
 
 * **NETFLICKS Logo**: Redirects to the home page.
 * **SEARCH**: Provides a search bar and redirects to a results page.
