@@ -1,4 +1,4 @@
-![NETFLICKS](/ReadMeImages/Netflicks_Clear.png)
+![NETFLICKS](/ReadMeImages/netflicks_logo.png)
 
 NETFLICKS is a project inspired by Netflix.
 
