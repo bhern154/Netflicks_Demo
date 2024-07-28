@@ -5,13 +5,17 @@ from forms import RegisterForm, LoginForm, SearchForm
 from sqlalchemy.exc import IntegrityError
 import requests
 import time
-from credentials import SecretKey, APIKey
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///netflicks_db"
+app.config["SQLALCHEMY_DATABASE_URI"] = (os.environ.get('DATABASE_URL', 'postgresql:///netflicks_db'))
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
-app.config["SECRET_KEY"] = SecretKey
+app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 connect_db(app)
@@ -123,7 +127,7 @@ def get_search_results():
         # API request setup
         url = f'https://ott-details.p.rapidapi.com/search?title={search}&page=1'
         headers = {
-            'X-RapidAPI-Key': APIKey,
+            'X-RapidAPI-Key': os.environ.get('API_KEY'),
             'X-RapidAPI-Host': 'ott-details.p.rapidapi.com'
         }
 
@@ -211,7 +215,7 @@ def get_genre_recommendations(genre, page):
             'page': page
         }
         headers = {
-            'X-RapidAPI-Key': APIKey,
+            'X-RapidAPI-Key': os.environ.get('API_KEY'),
             'X-RapidAPI-Host': 'ott-details.p.rapidapi.com'
         }
 
@@ -317,7 +321,7 @@ def fetch_and_update_movie_details(imdbid):
     try:
         url = f"https://ott-details.p.rapidapi.com/gettitleDetails?imdbid={imdbid}"
         headers = {
-            'X-RapidAPI-Key': APIKey,
+            'X-RapidAPI-Key': os.environ.get('API_KEY'),
             'X-RapidAPI-Host': 'ott-details.p.rapidapi.com'
         }
         response = requests.get(url, headers=headers)
@@ -360,7 +364,7 @@ def fetch_and_update_additional_movie_details(imdbid):
     try:
         url = f"https://ott-details.p.rapidapi.com/getadditionalDetails?imdbid={imdbid}"
         headers = {
-            'X-RapidAPI-Key': APIKey,
+            'X-RapidAPI-Key': os.environ.get('API_KEY'),
             'X-RapidAPI-Host': 'ott-details.p.rapidapi.com'
         }
         response = requests.get(url, headers=headers)
