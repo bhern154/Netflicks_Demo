@@ -3,6 +3,7 @@
 NETFLICKS is a project inspired by Netflix and uses the [OTT Details API](https://rapidapi.com/gox-ai-gox-ai-default/api/ott-details).
 
 See the live demo here! [https://netflicks-demo.onrender.com](https://netflicks-demo.onrender.com)
+
 Note: The database is hosted by Supabase and the website is hosted by Render.
 
 The goal of this project is to develop a Python full-stack web application. The stack includes Flask for the server-side framework, PostgreSQL as the database, SQLAlchemy for ORM (Object Relational Mapping), Jinja for templating in HTML, WTForms for user forms, and Bcrypt for securing user authentication with encryption.
