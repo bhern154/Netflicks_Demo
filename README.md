@@ -104,6 +104,11 @@ The Recently Viewed Page shows the movies that the logged-in user has recently v
 - **`psql`**
     - **`CREATE DATABASE netflicks_db;`**: Create the PostgreSQL database.
 
+**Add `.env` file and variables:**
+    - **`.env`**: Create the file on the main folder
+    - **Add the `SECRET_KEY` variable**: This is for your app configuration
+    - **Add the `DATABASE_URL` variable**: This is the url to your postgresql `netflicks_db` database
+    - **Add the `API_KEY` variable**: This is your api key from [OTT Details API](https://rapidapi.com/gox-ai-gox-ai-default/api/ott-details)
   
 **MacOS Terminal / Linux:**
   - **`git clone <url>`:** Clone the repository.
